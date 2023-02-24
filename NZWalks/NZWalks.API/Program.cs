@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NZWalks.API.Data;
+using NZWalks.API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,10 @@ builder.Services.AddDbContext<NZWalksDbContext>(options =>
 {
 	options.UseSqlServer("server=USBLRNIKHILSHA9\\SQLEXPRESS;database=NZWalkDb;Trusted_Connection = True; integrated security = true; TrustServerCertificate = True");
 });
+
+builder.Services.AddScoped<IRegionRepository, RegionRepository>();
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);  //While starting the application, AutoMapper looks for all the Profiles and starts mapping 
 
 var app = builder.Build();
 
