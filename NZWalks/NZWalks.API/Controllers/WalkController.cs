@@ -25,7 +25,7 @@ namespace NZWalks.API.Controllers
 		}
 
 		[HttpGet]
-		//[Authorize(Roles = "reader")]
+		[Authorize(Roles = "reader")] //If no authorize attribute is used, then the method is left public and anyone with link can access it
 		public async Task<IActionResult> GetAllWalksAsync()
 		{
 			// Fetch data from database - domain walks
@@ -41,7 +41,7 @@ namespace NZWalks.API.Controllers
 		[HttpGet]
 		[Route("{id:guid}")]
 		[ActionName("GetWalkAsync")]
-		//[Authorize(Roles = "reader")]
+		[Authorize(Roles = "reader")]
 		public async Task<IActionResult> GetWalkAsync(Guid id)
 		{
 			// Get Walk Domain object from database
@@ -55,7 +55,7 @@ namespace NZWalks.API.Controllers
 		}
 
 		[HttpPost]
-		//[Authorize(Roles = "writer")]
+		[Authorize(Roles = "writer")]
 		//Both Validations are done; 1. FLuent Validation is done first for length and name  2. ModelState Validation is done for regionid and walkdifficultyid (bcz related with other entities)
 		public async Task<IActionResult> AddWalkAsync([FromBody] Models.DTO.AddWalkRequest addWalkRequest)
 		{
@@ -94,7 +94,7 @@ namespace NZWalks.API.Controllers
 
 		[HttpPut]
 		[Route("{id:guid}")]
-		//[Authorize(Roles = "writer")]
+		[Authorize(Roles = "writer")]
 		public async Task<IActionResult> UpdateWalkAsync([FromRoute] Guid id,
 			[FromBody] Models.DTO.UpdateWalkRequest updateWalkRequest)
 		{
@@ -138,7 +138,7 @@ namespace NZWalks.API.Controllers
 
 		[HttpDelete]
 		[Route("{id:guid}")]
-		//[Authorize(Roles = "writer")]
+		[Authorize(Roles = "writer")]
 		public async Task<IActionResult> DeleteWalkAsync(Guid id)
 		{
 			// call Repository to delete walk
