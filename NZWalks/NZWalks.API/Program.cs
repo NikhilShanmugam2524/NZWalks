@@ -38,9 +38,14 @@ builder.Services.AddSwaggerGen(options =>
 	});
 });
 
+/*builder.Services.AddDbContext<NZWalksDbContext>(options =>
+{
+	options.UseSqlServer("server=USBLRNIKHILSHA9\\SQLEXPRESS;database=NZWalkDb; Trusted_Connection = True; integrated security = true; TrustServerCertificate = True"); 
+});*/
+
 builder.Services.AddDbContext<NZWalksDbContext>(options =>
 {
-	options.UseSqlServer("server=USBLRNIKHILSHA9\\SQLEXPRESS;database=NZWalkDb;Trusted_Connection = True; integrated security = true; TrustServerCertificate = True");
+	options.UseSqlServer(builder.Configuration.GetConnectionString("NZWalk")); //Taken from appsettings.json file; This is bcz no hard code value should be present in the program.cs file and it has to be present onky in the appsettings.json file
 });
 
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();
