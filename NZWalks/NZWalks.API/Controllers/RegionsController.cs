@@ -70,13 +70,14 @@ namespace NZWalks.API.Controllers
 
 		[HttpPost]
 		//[Authorize(Roles = "writer")]
+		//Using FLuent Validations => The implementation is entered only after all validator checks are completed with no errors
 		public async Task<IActionResult> AddRegionAsync(Models.DTO.AddRegionRequest addRegionRequest)
 		{
 			// Validate The Request
-			//if (!ValidateAddRegionAsync(addRegionRequest))
-			//{
-			//    return BadRequest(ModelState);
-			//}
+			/*if (!ValidateAddRegionAsync(addRegionRequest))
+			{
+				return BadRequest(ModelState);
+			}*/
 
 			// Request(DTO) to Domain model
 			var region = new Models.Domain.Region()
@@ -105,10 +106,10 @@ namespace NZWalks.API.Controllers
 			};
 
 			return CreatedAtAction(nameof(GetRegionAsync), new { id = regionDTO.Id }, regionDTO);  //Displaying the region value in screen after adding the new record in the DB
-			//CreatedAtAction => Gives a response Status Code 201 (Save/Add a new record in the DB successfully)
-			//Parameter1 - GetRegionAsync => Action name is required by the CreatedAtAction() (Name of the action to generate the URL)
-			//Parameter2 -  => Route value (Id) => Route id to find the record
-			//Parameter1 - Entire Object is required  => Entire the object to display it in the SwaggerUI
+																								   //CreatedAtAction => Gives a response Status Code 201 (Save/Add a new record in the DB successfully)
+																								   //Parameter1 - GetRegionAsync => Action name is required by the CreatedAtAction() (Name of the action to generate the URL)
+																								   //Parameter2 -  => Route value (Id) => Route id to find the record
+																								   //Parameter1 - Entire Object is required  => Entire the object to display it in the SwaggerUI
 
 		}
 
@@ -151,10 +152,10 @@ namespace NZWalks.API.Controllers
 			[FromBody] Models.DTO.UpdateRegionRequest updateRegionRequest)
 		{
 			// Validate the incoming request
-			//if (!ValidateUpdateRegionAsync(updateRegionRequest))
-			//{
-			//    return BadRequest(ModelState);
-			//}
+			/*if (!ValidateUpdateRegionAsync(updateRegionRequest))
+			{
+			    return BadRequest(ModelState);
+			}*/
 
 			// Convert updateRequestDTO to Domain model
 			var region = new Models.Domain.Region()
@@ -194,8 +195,9 @@ namespace NZWalks.API.Controllers
 			return Ok(regionDTO);
 		}
 
-
-		/*#region Private methods
+		//#region => Collapses and hides sections of code in Visual Basic files
+		//Use the #Region directive to specify a block of code to expand or collapse when using the outlining feature of Visual Studio IDE.
+		/*#region Private methods   
 
 		private bool ValidateAddRegionAsync(Models.DTO.AddRegionRequest addRegionRequest)
 		{
@@ -243,7 +245,7 @@ namespace NZWalks.API.Controllers
 			if (updateRegionRequest == null)
 			{
 				ModelState.AddModelError(nameof(updateRegionRequest),
-					$"Add Region Data is required.");
+					$"Update Region Data is required.");
 				return false;
 			}
 
@@ -277,6 +279,7 @@ namespace NZWalks.API.Controllers
 			}
 
 			return true;
-		}*/
+		}
+		#endregion*/
 	}
 }

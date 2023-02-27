@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using NZWalks.API.Data;
 using NZWalks.API.Repositories;
@@ -21,6 +22,9 @@ builder.Services.AddScoped<IWalkRepository, WalkRepository>();
 builder.Services.AddScoped<IWalkDifficultyRepository, WalkDifficultyRepository>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);  //While starting the application, AutoMapper looks for all the Profiles and starts mapping 
+
+builder.Services.
+	AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<Program>());
 
 var app = builder.Build();
 

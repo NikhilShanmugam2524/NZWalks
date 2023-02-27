@@ -56,13 +56,14 @@ namespace NZWalks.API.Controllers
 
 		[HttpPost]
 		//[Authorize(Roles = "writer")]
+		//Both Validations are done; 1. FLuent Validation is done first for length and name  2. ModelState Validation is done for regionid and walkdifficultyid (bcz related with other entities)
 		public async Task<IActionResult> AddWalkAsync([FromBody] Models.DTO.AddWalkRequest addWalkRequest)
 		{
-			/*// Validate the incoming request
+			// Validate the incoming request
 			if (!(await ValidateAddWalkAsync(addWalkRequest)))
 			{
 				return BadRequest(ModelState);
-			}*/
+			}
 
 			// Convert addWalkRequestDTO to Domain Object
 			var walkDomain = new Models.Domain.Walk
@@ -97,11 +98,11 @@ namespace NZWalks.API.Controllers
 		public async Task<IActionResult> UpdateWalkAsync([FromRoute] Guid id,
 			[FromBody] Models.DTO.UpdateWalkRequest updateWalkRequest)
 		{
-			/*// Validate the incoming request
+			// Validate the incoming request
 			if (!(await ValidateUpdateWalkAsync(updateWalkRequest)))
 			{
 				return BadRequest(ModelState);
-			}*/
+			}
 
 			// ConvertupdateWalkRequestDTO to Domain object
 			var walkDomain = new Models.Domain.Walk
@@ -154,7 +155,7 @@ namespace NZWalks.API.Controllers
 		}
 
 
-		/*#region Private methods
+		#region Private methods
 
 		private async Task<bool> ValidateAddWalkAsync(Models.DTO.AddWalkRequest addWalkRequest)
 		{
@@ -244,7 +245,7 @@ namespace NZWalks.API.Controllers
 			return true;
 		}
 
-		#endregion*/
+		#endregion
 	}
 }
 

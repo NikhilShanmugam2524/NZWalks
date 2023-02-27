@@ -50,6 +50,7 @@ namespace NZWalks.API.Controllers
 
 		[HttpPost]
 		//[Authorize(Roles = "writer")]
+		//Fluent Validation is done
 		public async Task<IActionResult> AddWalkDifficultyAsync(
 			Models.DTO.AddWalkDifficultyRequest addWalkDifficultyRequest)
 		{
