@@ -73,6 +73,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 		IssuerSigningKey = new SymmetricSecurityKey(
 			Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
 	});
+builder.Services.AddApplicationInsightsTelemetry();
 
 var app = builder.Build();
 
